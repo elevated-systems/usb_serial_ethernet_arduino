@@ -20,7 +20,7 @@ e-mail   :  support@circuitsathome.com
 
 
 //#define BOARD_BLACK_WIDDOW
-
+//#define USB_AND_ETHERNET_SHIELDS
 
 #define USB_METHODS_INLINE
 
@@ -42,11 +42,13 @@ e-mail   :  support@circuitsathome.com
 
 /* shield pins. First parameter - SS pin, second parameter - INT pin */
 
-#ifdef BOARD_BLACK_WIDDOW
-typedef MAX3421e<P6, P3>		MAX3421E;		// Black Widow
-#else
-typedef MAX3421e<P10, P9>		MAX3421E;		// Official Arduinos (UNO, Duemilanove, Mega, 2560
-#endif
+//#ifdef BOARD_BLACK_WIDDOW
+//typedef MAX3421e<P6, P3>		MAX3421E;		// Black Widow
+//#elifdef USB_AND_ETHERNET_SHIELDS
+typedef MAX3421e<P6, P9> 		MAX3421E;		// Official Arduinos with both USB Host and Ethernet Shields (as pin 10 is used as SS for the Ethernet Shield as well)
+//#else
+//typedef MAX3421e<P10, P9>		MAX3421E;		// Official Arduinos (UNO, Duemilanove, Mega, 2560)
+//#endif
 
 #define USBTRACE(s) (Serial.print((s)))
 #define USBTRACE2(s,r) (Serial.print((s)), Serial.println((r),HEX))
